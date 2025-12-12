@@ -1,0 +1,19 @@
+<aside class="sidebar ssc">
+  <div class="logo">
+    <h2>Officer Portal</h2>
+    <p>Treasurer Dashboard</p>
+  </div>
+
+  <nav class="nav">
+    <a
+      class="nav-item"
+      *ngFor="let tab of tabs"
+      [routerLink]="tab.route"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span class="icon">{{ tab.icon }}</span>
+      <span>{{ tab.label }}</span>
+    </a>
+  </nav>
+</aside>

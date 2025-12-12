@@ -1,0 +1,73 @@
+<div class="dashboard">
+  <app-ssc-sidebar></app-ssc-sidebar>
+
+  <main class="main-content">
+    <h1>Student Clearance Management</h1>
+    <p class="page-subtitle">Track and manage student clearance status</p>
+
+    <div class="section">
+      <div class="section-header">
+        <h2>Student Clearance Status</h2>
+      </div>
+
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Student ID, Name...">
+        </div>
+
+        <div class="filter-group">
+          <label>Year Level</label>
+          <select [(ngModel)]="yearFilter">
+            <option value="">All Years</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Status</label>
+          <select [(ngModel)]="statusFilter">
+            <option value="">All Status</option>
+            <option value="complete">Complete</option>
+            <option value="pending">Pending</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>Year Level</th>
+            <th>Treasurer</th>
+            <th>Adviser</th>
+            <th>Librarian</th>
+            <th>Dean</th>
+            <th>Overall Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of filteredStudents">
+            <td>{{s.studentId}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.program}}</td>
+            <td>{{s.year}}</td>
+            <td><span class="badge" [ngClass]="getBadgeClass(s.treasurer)">{{s.treasurer}}</span></td>
+            <td><span class="badge" [ngClass]="getBadgeClass(s.adviser)">{{s.adviser}}</span></td>
+            <td><span class="badge" [ngClass]="getBadgeClass(s.librarian)">{{s.librarian}}</span></td>
+            <td><span class="badge" [ngClass]="getBadgeClass(s.dean)">{{s.dean}}</span></td>
+            <td><span class="badge" [ngClass]="getBadgeClass(s.overallStatus)">{{s.overallStatus}}</span></td>
+            <td><button class="btn-sm btn-warning" (click)="addComment(s.studentId)">Comment</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
